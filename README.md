@@ -1,165 +1,226 @@
-# week-8
+# Week-8 Experiment
 
-#  Experiment: Precision Half-Wave Rectifiers (Inverting & Non-Inverting)
 
 ## AIM
 
-To design, simulate, and analyze **inverting** and **non-inverting precision half-wave rectifier circuits** using an op-amp.
+To design, simulate, and analyze **inverting** and **non-inverting precision half-wave rectifier circuits** using an operational amplifier.
 
 ---
 
-##  Components Used
+## COMPONENTS USED
 
-* Op-Amp: uA741
-* Resistors: R1 = 10kΩ, R2 = 10kΩ
-* Diodes: 1N4148 (D1, D2)
-* Power Supply: ±13V
+* **Op-Amp:** uA741
+* **Resistors:** R1 = 10kΩ, R2 = 10kΩ
+* **Diodes:** 1N4148 (D1, D2)
+* **Power Supply:** +13V, −13V
 
 ---
 
-##  Input Signal
+## INPUT SIGNAL
 
-Vin = SINE(0 0.5 1k)
-
-* Peak-to-Peak Voltage = 1V
+* ( V_{in} = \text{SINE}(0,\ 0.5,\ 1kHz) )
 * Peak Voltage = 0.5V
+* Frequency = 1kHz
 
 ---
 
-#  PART A: Inverting Precision Half-Wave Rectifier
+## THEORY
 
-##  Design
+A **precision rectifier** eliminates the error caused by the diode forward voltage drop (~0.7V).
+By placing diodes in the **feedback path of an op-amp**, the circuit compensates for this drop.
+
+This allows accurate rectification of **very small signals (mV range)**.
+
+---
+
+#  PART A: INVERTING PRECISION HALF-WAVE RECTIFIER
+
+## DESIGN
+
+The circuit behaves as an **inverting amplifier** during conduction.
+
+---
+
+## CALCULATION
 
 Gain:
-Av = -R2 / R1 = -1
+
+[
+A_v = -\frac{R_2}{R_1} = -\frac{10k}{10k} = -1
+]
 
 ---
 
-##  Transfer Function
+## TRANSFER FUNCTION
 
-Vout = 0        for Vin > 0
-Vout = -Vin     for Vin < 0
+[
+V_{out} =
+\begin{cases}
+0, & V_{in} > 0 \
 
----
-
-##  Working
-
-###  Positive Half Cycle (Vin > 0)
-
-* Op-amp output swings negative
-* D1 → ON, D2 → OFF
-* No output path
-
- Vout = 0
+* V_{in}, & V_{in} < 0
+  \end{cases}
+  ]
 
 ---
 
-### ➤ Negative Half Cycle (Vin < 0)
+## WORKING
 
-* Op-amp output swings positive
-* D1 → OFF, D2 → ON
-* Acts as inverting amplifier
+###  Positive Half Cycle ((V_{in} > 0))
 
- Vout = -Vin
+* Op-amp output swings **negative**
+* **D1 conducts**, **D2 is OFF**
+* Feedback path is inactive for output node
 
----
+ Output:
+[
+V_{out} = 0
+]
 
-##  Output
+*(Op-amp saturates internally, but output is blocked by diode)*
 
-<img width="1600" height="812" alt="WhatsApp Image 2026-04-24 at 3 09 43 PM" src="https://github.com/user-attachments/assets/c3595519-a18d-43cc-bcb1-10750c4ee095" />
-
-* Positive input → blocked
-* Negative input → inverted to positive
-
----
-
-#  PART B: Non-Inverting Precision Half-Wave Rectifier
-
-##  Design
-
-Voltage follower configuration during conduction
+<img width="1600" height="817" alt="WhatsApp Image 2026-04-24 at 4 20 42 PM" src="https://github.com/user-attachments/assets/5e7f1aac-72bb-4c54-b943-b5b34b23557f" />
 
 ---
 
-##  Transfer Function
+###  Negative Half Cycle ((V_{in} < 0))
 
-Vout = Vin      for Vin > 0
-Vout = 0        for Vin < 0
+* Op-amp output swings **positive**
+* **D2 conducts**, **D1 is OFF**
+* Feedback path is active
 
----
-
-##  Working
-
-###  Positive Half Cycle (Vin > 0)
-
-* Diode ON
-* Feedback active
-* Output follows input
-
- Vout = Vin
+ Output:
+[
+V_{out} = -V_{in}
+]
 
 ---
 
-###  Negative Half Cycle (Vin < 0)
+## RESULT
 
-* Diode OFF
-* Feedback breaks
-
- Vout = 0
+* Positive half cycle is **blocked**
+* Negative half cycle is **inverted to positive**
 
 ---
 
-##  Output
+#  PART B: NON-INVERTING PRECISION HALF-WAVE RECTIFIER
 
-* Positive input → passed as it is
-* Negative input → blocked
+## DESIGN
 
----
-
-#  Simulation Setup (LTspice)
-
-## Transient Analysis
-
-.tran 0 10ms
-
-## DC Sweep (Transfer Characteristics)
-
-.dc V1 -0.5 0.5 0.01
+The circuit behaves as a **voltage follower** during conduction.
 
 ---
 
-#  Observations
+## CALCULATION
 
-* Small spikes near zero crossing due to:
-
-  * Op-amp slew rate limitation
-  * Diode switching delay
-* uA741 is slow → causes minor distortion
+[
+A_v = +1
+]
 
 ---
 
-#  Comparison
+## TRANSFER FUNCTION
 
-| Feature         | Inverting Rectifier | Non-Inverting Rectifier |
-| --------------- | ------------------- | ----------------------- |
-| Input processed | Negative half       | Positive half           |
-| Output polarity | Positive (inverted) | Same as input           |
-| Gain            | -1                  | +1                      |
-| Complexity      | Moderate            | Simple                  |
-
----
-
-#  Conclusion
-
-* Precision rectifiers eliminate diode threshold error
-* Enable accurate rectification of low-voltage signals
-* Both configurations are useful depending on required output polarity
+[
+V_{out} =
+\begin{cases}
+V_{in}, & V_{in} > 0 \
+0, & V_{in} < 0
+\end{cases}
+]
 
 ---
 
-#  Applications
+## WORKING
+
+###  Positive Half Cycle ((V_{in} > 0))
+
+* Diode is **ON**
+* Feedback path is active
+* Op-amp operates in closed loop
+
+ Output:
+[
+V_{out} = V_{in}
+]
+
+
+---
+<img width="1600" height="815" alt="WhatsApp Image 2026-04-24 at 4 41 08 PM" src="https://github.com/user-attachments/assets/09cf0c65-e207-436e-adb9-56319e9b4e79" />
+
+###  Negative Half Cycle ((V_{in} < 0))
+
+* Diode is **OFF**
+* Feedback path is broken
+
+ Output:
+[
+V_{out} = 0
+]
+
+---
+
+## RESULT
+
+* Positive half cycle passes **unchanged**
+* Negative half cycle is **blocked**
+
+---
+
+## SIMULATION SETUP (LTspice)
+
+* Transient Analysis:
+  `.tran 0 10ms`
+
+* DC Sweep:
+  `.dc V1 -0.5 0.5 0.01`
+
+---
+
+## OBSERVATIONS
+
+* Output waveform matches theoretical expectation
+* Small distortion near zero crossing observed
+
+### Reasons:
+
+* Limited slew rate of uA741 (~0.5 V/µs)
+* Finite gain and bandwidth
+* Diode switching delay
+
+---
+
+## JUSTIFICATION
+
+The op-amp compensates for the diode forward voltage drop, enabling accurate rectification of low-voltage signals.
+The output closely follows ideal rectifier behavior.
+
+---
+
+## COMPARISON
+
+| Feature            | Inverting Rectifier | Non-Inverting Rectifier |
+| ------------------ | ------------------- | ----------------------- |
+| Input processed    | Negative half       | Positive half           |
+| Output polarity    | Inverted (+)        | Same as input           |
+| Gain               | -1                  | +1                      |
+| Circuit complexity | Moderate            | Simple                  |
+
+---
+
+## APPLICATIONS
 
 * Signal detection
-* AC to DC conversion (low voltage)
+* Low-voltage AC to DC conversion
 * Instrumentation systems
 * Analog signal processing
+
+---
+
+## CONCLUSION
+
+The inverting and non-inverting precision half-wave rectifiers were successfully designed and simulated using LTspice.
+The circuits eliminate diode threshold error and accurately rectify low-amplitude signals.
+The choice of configuration depends on the required output polarity.
+
+---
