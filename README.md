@@ -1,6 +1,5 @@
 # Week-8 Experiment
 
-
 ## AIM
 
 To design, simulate, and analyze **inverting** and **non-inverting half-wave rectifier circuits** using an operational amplifier.
@@ -18,7 +17,7 @@ To design, simulate, and analyze **inverting** and **non-inverting half-wave rec
 
 ## INPUT SIGNAL
 
-* ( V_{in} = \text{SINE}(0,\ 0.5,\ 1kHz) )
+* $$ V_{in} = \text{SINE}(0,\ 0.5,\ 1kHz) $$
 * Peak Voltage = 0.5V
 * Frequency = 1kHz
 
@@ -33,7 +32,7 @@ This allows accurate rectification of **very small signals (mV range)**.
 
 ---
 
-#  PART A: INVERTING PRECISION HALF-WAVE RECTIFIER
+# PART A: INVERTING PRECISION HALF-WAVE RECTIFIER
 
 ## DESIGN
 
@@ -45,54 +44,56 @@ The circuit behaves as an **inverting amplifier** during conduction.
 
 Gain:
 
-[
+$$
 A_v = -\frac{R_2}{R_1} = -\frac{10k}{10k} = -1
-]
+$$
 
 ---
 
 ## TRANSFER FUNCTION
 
-[
+$$
 V_{out} =
 \begin{cases}
 0, & V_{in} > 0 \
 
 * V_{in}, & V_{in} < 0
   \end{cases}
-  ]
+  $$
 
 ---
 
 ## WORKING
 
-###  Positive Half Cycle ((V_{in} > 0))
+### Positive Half Cycle ($V_{in} > 0$)
 
 * Op-amp output swings **negative**
 * **D1 conducts**, **D2 is OFF**
 * Feedback path is inactive for output node
 
- Output:
-[
+Output:
+
+$$
 V_{out} = 0
-]
+$$
 
 *(Op-amp saturates internally, but output is blocked by diode)*
 
-<img width="1600" height="817" alt="WhatsApp Image 2026-04-24 at 4 20 42 PM" src="https://github.com/user-attachments/assets/5e7f1aac-72bb-4c54-b943-b5b34b23557f" />
+<img width="1600" height="817" alt="Inverting Circuit" src="https://github.com/user-attachments/assets/5e7f1aac-72bb-4c54-b943-b5b34b23557f" />
 
 ---
 
-###  Negative Half Cycle ((V_{in} < 0))
+### Negative Half Cycle ($V_{in} < 0$)
 
 * Op-amp output swings **positive**
 * **D2 conducts**, **D1 is OFF**
 * Feedback path is active
 
- Output:
-[
+Output:
+
+$$
 V_{out} = -V_{in}
-]
+$$
 
 ---
 
@@ -103,7 +104,7 @@ V_{out} = -V_{in}
 
 ---
 
-#  PART B: NON-INVERTING PRECISION HALF-WAVE RECTIFIER
+# PART B: NON-INVERTING PRECISION HALF-WAVE RECTIFIER
 
 ## DESIGN
 
@@ -113,50 +114,52 @@ The circuit behaves as a **voltage follower** during conduction.
 
 ## CALCULATION
 
-[
+$$
 A_v = +1
-]
+$$
 
 ---
 
 ## TRANSFER FUNCTION
 
-[
+$$
 V_{out} =
 \begin{cases}
 V_{in}, & V_{in} > 0 \
 0, & V_{in} < 0
 \end{cases}
-]
+$$
 
 ---
 
 ## WORKING
 
-###  Positive Half Cycle ((V_{in} > 0))
+### Positive Half Cycle ($V_{in} > 0$)
 
 * Diode is **ON**
 * Feedback path is active
 * Op-amp operates in closed loop
 
- Output:
-[
-V_{out} = V_{in}
-]
+Output:
 
+$$
+V_{out} = V_{in}
+$$
+
+<img width="1600" height="815" alt="Non-Inverting Circuit" src="https://github.com/user-attachments/assets/09cf0c65-e207-436e-adb9-56319e9b4e79" />
 
 ---
-<img width="1600" height="815" alt="WhatsApp Image 2026-04-24 at 4 41 08 PM" src="https://github.com/user-attachments/assets/09cf0c65-e207-436e-adb9-56319e9b4e79" />
 
-###  Negative Half Cycle ((V_{in} < 0))
+### Negative Half Cycle ($V_{in} < 0$)
 
 * Diode is **OFF**
 * Feedback path is broken
 
- Output:
-[
+Output:
+
+$$
 V_{out} = 0
-]
+$$
 
 ---
 
