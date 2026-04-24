@@ -17,7 +17,7 @@ To design, simulate, and analyze **inverting** and **non-inverting half-wave rec
 
 ## INPUT SIGNAL
 
-* $$ V_{in} = \text{SINE}(0,\ 0.5,\ 1kHz) $$
+* Vin = SINE(0 0.5 1K)
 * Peak Voltage = 0.5V
 * Frequency = 1kHz
 
@@ -44,23 +44,14 @@ The circuit behaves as an **inverting amplifier** during conduction.
 
 Gain:
 
-$$
-A_v = -\frac{R_2}{R_1} = -\frac{10k}{10k} = -1
-$$
+Av= -R2/R1 = -10/10 = -1
 
 ---
 
-## TRANSFER FUNCTION
+## TRANSFER FUNCTION.
 
-$$
-V_{out} =
-\begin{cases}
-0, & V_{in} > 0 \
-
-* V_{in}, & V_{in} < 0
-  \end{cases}
-  $$
-
+Vout = 0,when Vin > 0
+Vout = -Vin, when Vin < 0
 ---
 
 ## WORKING
@@ -72,10 +63,7 @@ V_{out} =
 * Feedback path is inactive for output node
 
 Output:
-
-$$
-V_{out} = 0
-$$
+Vout = 0
 
 *(Op-amp saturates internally, but output is blocked by diode)*
 
@@ -90,10 +78,7 @@ $$
 * Feedback path is active
 
 Output:
-
-$$
-V_{out} = -V_{in}
-$$
+Vout = -Vin
 
 ---
 
@@ -114,9 +99,7 @@ The circuit behaves as a **voltage follower** during conduction.
 
 ## CALCULATION
 
-$$
-A_v = +1
-$$
+Av=+1
 
 ---
 
@@ -125,7 +108,7 @@ $$
 $$
 V_{out} =
 \begin{cases}
-V_{in}, & V_{in} > 0 \
+V_{in}, & V_{in} > 0 \\
 0, & V_{in} < 0
 \end{cases}
 $$
@@ -141,10 +124,7 @@ $$
 * Op-amp operates in closed loop
 
 Output:
-
-$$
-V_{out} = V_{in}
-$$
+Vout = Vin
 
 <img width="1600" height="815" alt="Non-Inverting Circuit" src="https://github.com/user-attachments/assets/09cf0c65-e207-436e-adb9-56319e9b4e79" />
 
@@ -156,10 +136,7 @@ $$
 * Feedback path is broken
 
 Output:
-
-$$
-V_{out} = 0
-$$
+Vout = 0
 
 ---
 
