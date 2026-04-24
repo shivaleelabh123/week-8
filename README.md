@@ -3,7 +3,7 @@
 
 ## AIM
 
-To design, simulate, and analyze **inverting** and **non-inverting precision half-wave rectifier circuits** using an operational amplifier.
+To design, simulate, and analyze **inverting** and **non-inverting half-wave rectifier circuits** using an operational amplifier.
 
 ---
 
